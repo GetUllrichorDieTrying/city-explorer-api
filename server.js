@@ -4,10 +4,12 @@
 const express = require('express');
 require('dotenv').config();
 let data = require('./data/weather.json');
+const cors = require('cors');
 
 // USE
 const app = express();
 const PORT = process.env.PORT || 3002;
+app.use(cors());
 
 // ROUTES
 app.get('/weather', (request, response) => {

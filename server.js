@@ -15,25 +15,26 @@ app.get('/weather', (request, response) => {
 
   let searchedCity = data.find(city => city.city_name.toLowerCase() === cityData.toLowerCase());
 
-  let dataToSend = searchedCity.data.
-
+  let dataToSend = searchedCity.data.map(city => new Forecast(city))
+  response.send(dataToSend);
 });
 
 // Catch all "star route"***
 app.get('*', (request, response) => {
-  response.send('What you have requested does not exit...')
+  response.send('What you have requested does not exist...')
 });
 
-// ERRORS
+// ERRORS`
 
 
 // CLASSES
 class Forecast {
   constructor(weatherObj) {
-    this.date = weatherObj.date;
-    this.description = weatherObj.description;
+    this.date = weatherObj.datetime;
+    this.description = weatherObj.weather.description;
   }
 }
+// console.log(weatherObj);
 
 // LISTEN
 app.listen(PORT, () => console.log(`LISTENING ON YO PORT ${PORT}`));

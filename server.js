@@ -34,7 +34,6 @@ class Forecast {
     this.description = weatherObj.weather.description;
   }
 }
-// console.log(weatherObj);
 
 // LISTEN
 app.listen(PORT, () => console.log(`LISTENING ON YO PORT ${PORT}`));

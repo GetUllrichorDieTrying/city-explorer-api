@@ -5,15 +5,29 @@
 
 ## Overview
 
-
 ### Getting Started
 
+## Architecture
 
-### Architecture
+### Web Request Response Cycle
 
+#### Iteration 1
+
+![Web Request Response Cycle](./img/Lab6WRRC.png)
+
+#### Iteration 2
+
+![Web Request Response Cycle](./img/Lab7WRRC.png)
+
+#### Iteration 3
+
+![Web Request Response Cycle](./img/Lab8WRRC.png)
+
+#### Iteration 4
+
+![Web Request Response Cycle](./img/Lab8WRRC.png)
 
 ### Change Log
-
 
 ### Credit and Collaborations
 
@@ -30,12 +44,12 @@ Actual time needed to complete: 20 mins
 
 Estimate of time needed to complete: 2
 Start time: 10:00
-Finish time: 
-Actual time needed to complete: 
+Finish time: 2:00
+Actual time needed to complete: 3 hours
 
 ### 3) Errors
 
-Estimate of time needed to complete: 
-Start time: 
-Finish time: 
-Actual time needed to complete: 
+Estimate of time needed to complete:
+Start time:
+Finish time:
+Actual time needed to complete:

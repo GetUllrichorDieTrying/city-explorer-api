@@ -49,6 +49,27 @@ Actual time needed to complete: 3 hours
 
 ### 3) Errors
 
+Estimate of time needed to complete: 45 mins
+Start time: 3:00
+Finish time: 4:05
+Actual time needed to complete: 1 hour 55 mins
+
+### 4) Weather 2.0
+
+Estimate of time needed to complete:
+Start time:
+Finish time:
+Actual time needed to complete:
+
+### 5) Movies
+
+Estimate of time needed to complete:
+Start time:
+Finish time:
+Actual time needed to complete:
+
+### 6) Publish
+
 Estimate of time needed to complete:
 Start time:
 Finish time:

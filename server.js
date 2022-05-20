@@ -3,8 +3,8 @@
 // REQUIRE
 const express = require('express');
 require('dotenv').config();
-let data = require('./data/weather.json');
 const cors = require('cors');
+const axios = require('axios');
 
 // USE
 const app = express();
@@ -12,22 +12,36 @@ const PORT = process.env.PORT || 3002;
 app.use(cors());
 
 // ROUTES
-app.get('/weather', (request, response) => {
-  let cityData = request.query.city;
-
-  let searchedCity = data.find(city => city.city_name.toLowerCase() === cityData.toLowerCase());
-
-  let dataToSend = searchedCity.data.map(city => new Forecast(city))
-  response.send(dataToSend);
+app.get('/', (request, response) => {
+  response.send('Welcome to your favorite server!');
+});
+app.get('/weather', async (request, response) => {
+  // find out what front end is rquesting
+  try {
+    let inputLat = request.query.lat;
+    let inputLon = request.query.lon;
+    // make request to api
+    let url = `https://api.weatherbit.io/v2.0/current?key=${process.env.WEATHERBIT_API_KEY}&lang=en&units=I&lat=${inputLat}&lon=${inputLon}`;
+    let find = axios.get(url);
+    let results = find.data;
+    // send to front end
+    console.log(results.data);
+    response.send(results);
+  } catch (error) {
+    next(error);
+  }
 });
 
 // Catch all "star route"***
 app.get('*', (request, response) => {
-  response.send('What you have requested does not exist...')
+  response.send('What you have requested does not exist...');
 });
 
-// ERRORS`
-
+// ERRORS
+app.use((error, request, response, next) => {
+  console.log(error.message);
+  response.status(500).send(error.message);
+});
 
 // CLASSES
 class Forecast {

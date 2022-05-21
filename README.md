@@ -63,14 +63,7 @@ Actual time needed to complete:
 
 ### 5) Movies
 
-Estimate of time needed to complete:
-Start time:
-Finish time:
-Actual time needed to complete:
-
-### 6) Publish
-
-Estimate of time needed to complete:
-Start time:
-Finish time:
-Actual time needed to complete:
+Estimate of time needed to complete: 1 hour
+Start time: 9:55
+Finish time: 11:00
+Actual time needed to complete: 1:15

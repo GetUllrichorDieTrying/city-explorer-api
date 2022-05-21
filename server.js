@@ -21,14 +21,33 @@ app.get('/weather', async (request, response) => {
     let inputLat = request.query.lat;
     let inputLon = request.query.lon;
     // make request to api
-    let url = `https://api.weatherbit.io/v2.0/current?key=${process.env.WEATHERBIT_API_KEY}&lang=en&units=I&lat=${inputLat}&lon=${inputLon}`;
-    let find = axios.get(url);
-    let results = find.data;
+    let url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHERBIT_API_KEY}&lang=en&units=I&lat=${inputLat}&lon=${inputLon}&unit=I&days=5`;
+    console.log(url);
+    let searchedCity = await axios.get(url);
     // send to front end
-    console.log(results.data);
-    response.send(results);
+    let dataToSend = searchedCity.data.data.map((city) => new Forecast(city));
+    response.status(200).send(dataToSend);
   } catch (error) {
-    next(error);
+    // next(error);
+  }
+});
+
+app.get('/movies', async (request, response) => {
+  // find out what front end is rquesting
+  try {
+    let input = request.query.city;
+
+    // make request to api
+    let url = `https://api.themoviedb.org/3/search/movie?api_key=${process.env.MOVIEDB_API_KEY}&query=${input}`;
+    let searchedCity = await axios.get(url);
+    // send to front end
+    let movieDataToSend = searchedCity.data.results.map(
+      (city) => new Movie(city)
+    );
+    console.log(movieDataToSend);
+    response.status(200).send(movieDataToSend);
+  } catch (error) {
+    // next(error);
   }
 });
 
@@ -48,6 +67,15 @@ class Forecast {
   constructor(weatherObj) {
     this.date = weatherObj.datetime;
     this.description = weatherObj.weather.description;
+    this.maxTemp = Math.round(weatherObj.app_max_temp);
+    this.minTemp = Math.round(weatherObj.min_temp);
+  }
+}
+
+class Movie {
+  constructor(movieObj) {
+    this.title = movieObj.original_title;
+    this.image = movieObj.backdrop_path;
   }
 }
 

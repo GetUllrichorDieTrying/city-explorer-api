@@ -9,7 +9,7 @@ async function getWeatherData(request, response, next) {
     let inputLon = request.query.lon;
     // make request to api
     let url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHERBIT_API_KEY}&lang=en&units=I&lat=${inputLat}&lon=${inputLon}&unit=I&days=5`;
-    console.log(url);
+    // console.log(url);
     let searchedCity = await axios.get(url);
     // send to front end
     let dataToSend = searchedCity.data.data.map((city) => new Forecast(city));

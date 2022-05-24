@@ -1,23 +1,34 @@
 'use strict';
 
 const axios = require('axios');
+let cache = require('./cache');
 
 // find out what the front is requesting
-async function getWeatherData(request, response, next) {
+async function getWeatherData(req, res, next) {
   try {
-    let inputLat = request.query.lat;
-    let inputLon = request.query.lon;
-    // make request to api
+    const inputLat = req.query.lat;
+    const inputLon = req.query.lon;
+    const key = inputLat + inputLon + '-WeatherData';
     let url = `https://api.weatherbit.io/v2.0/forecast/daily?key=${process.env.WEATHERBIT_API_KEY}&lang=en&units=I&lat=${inputLat}&lon=${inputLon}&unit=I&days=5`;
-    // console.log(url);
-    let searchedCity = await axios.get(url);
-    // send to front end
-    let dataToSend = searchedCity.data.data.map((city) => new Forecast(city));
-    response.status(200).send(dataToSend);
+    if (cache[key] && Date.now() - cache[key].timestamp < 500000) {
+      console.log('Cache hit');
+      res
+        .status(200)
+        .send(cache[key].data.data.data.map((city) => new Forecast(city)));
+    } else {
+      console.log('Cache miss');
+      cache[key] = {};
+      cache[key].timestamp = Date.now();
+      cache[key].data = await axios.get(url);
+      const dataToParse = cache[key].data.data.data;
+      const weatherDataToSend = dataToParse.map((city) => new Forecast(city));
+      res.send(weatherDataToSend);
+    }
   } catch (error) {
     next(error);
   }
 }
+
 // CLASSES
 class Forecast {
   constructor(weatherObj) {

@@ -56,14 +56,21 @@ Actual time needed to complete: 1 hour 55 mins
 
 ### 4) Weather 2.0
 
-Estimate of time needed to complete:
-Start time:
-Finish time:
-Actual time needed to complete:
+Estimate of time needed to complete: 1 hour
+Start time: 7:06
+Finish time: 7:47
+Actual time needed to complete: 41 mins
 
-### 5) Movies
+### 5) Movies 2.0
 
-Estimate of time needed to complete:
-Start time:
-Finish time:
-Actual time needed to complete:
+Estimate of time needed to complete: 1 hours
+Start time: 8:00
+Finish time: 9:00
+Actual time needed to complete: 1 hour
+
+### 5) Cache
+
+Estimate of time needed to complete: 1 hours
+Start time: 930
+Finish time: 1145
+Actual time needed to complete: 2 hours 15 mins
